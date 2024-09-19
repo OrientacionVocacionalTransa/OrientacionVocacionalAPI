@@ -1,4 +1,4 @@
-package com.vocacional.orientacionvocacional.Controller;
+package com.vocacional.orientacionvocacional.controller;
 
 import com.vocacional.orientacionvocacional.dto.UserDTO;
 import com.vocacional.orientacionvocacional.service.impl.UserService;
@@ -47,6 +47,15 @@ public class AuthController {
             return ResponseEntity.ok("Usuario actualizado correctamente");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al actualizar el usuario: " + e.getMessage());
+        }
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        try {
+            usuarioService.deleteUser(id);
+            return ResponseEntity.ok("Usuario eliminado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al eliminar el usuario: " + e.getMessage());
         }
     }
 }
