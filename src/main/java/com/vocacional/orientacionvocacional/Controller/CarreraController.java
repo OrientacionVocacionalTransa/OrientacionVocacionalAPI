@@ -38,7 +38,11 @@ public class CarreraController {
         return ResponseEntity.ok(nuevaCarrera);
     }
 
-
+    @PostMapping("/insertarubi")
+    public ResponseEntity<Ubicacion> agregarUbicacion(@RequestBody Ubicacion ubicacion) {
+        Ubicacion nuevaUbicacion = ubicacionRepository.save(ubicacion);
+        return ResponseEntity.ok(nuevaUbicacion);
+    }
 
 
 }
