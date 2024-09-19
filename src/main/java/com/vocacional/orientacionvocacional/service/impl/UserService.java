@@ -37,4 +37,18 @@ public class UserService {
         }
         return false;
     }
+    public void updateUser(Long id, UserDTO userDTO) throws Exception {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new Exception("Usuario no encontrado con id: " + id));
+
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+
+        if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        }
+
+        usuarioRepository.save(user);
+    }
 }

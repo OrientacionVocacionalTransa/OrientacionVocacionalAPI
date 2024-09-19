@@ -40,4 +40,13 @@ public class AuthController {
             return ResponseEntity.status(401).body(response);
         }
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        try {
+            usuarioService.updateUser(id, userDTO);
+            return ResponseEntity.ok("Usuario actualizado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar el usuario: " + e.getMessage());
+        }
+    }
 }
