@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -76,7 +77,11 @@ public class AuthController {
         }
     }
 
-
+    @GetMapping("/obtenertodos")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = usuarioService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 
 
 }
