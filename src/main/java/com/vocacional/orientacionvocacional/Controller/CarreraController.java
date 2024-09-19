@@ -44,5 +44,14 @@ public class CarreraController {
         return ResponseEntity.ok(nuevaUbicacion);
     }
 
+    @GetMapping("/porubicacion/{ubicacionId}")
+    public ResponseEntity<List<Carrera>> obtenerCarrerasPorUbicacion(@PathVariable Long ubicacionId) {
+        Ubicacion ubicacion = ubicacionRepository.findById(ubicacionId).orElse(null);
+        if (ubicacion == null) {
+            return ResponseEntity.badRequest().body(null); // Si no se encuentra la ubicación
+        }
 
+        List<Carrera> carreras = carreraRepository.findByUbicacion(ubicacion);
+        return ResponseEntity.ok(carreras);
+    }
 }
