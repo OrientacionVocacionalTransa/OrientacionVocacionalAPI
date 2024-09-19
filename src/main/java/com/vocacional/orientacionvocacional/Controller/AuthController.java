@@ -83,5 +83,14 @@ public class AuthController {
         return ResponseEntity.ok(users);
     }
 
+    @PutMapping("/{id}/encrypt-password")
+    public ResponseEntity<?> updatePassword(@PathVariable Long id, @RequestParam String newPassword) {
+        try {
+            usuarioService.updateAndEncryptPassword(id, newPassword);
+            return ResponseEntity.ok("Contraseña actualizada y encriptada exitosamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar la contraseña: " + e.getMessage());
+        }
+    }
 
 }

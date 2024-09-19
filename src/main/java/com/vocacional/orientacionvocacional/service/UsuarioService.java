@@ -76,4 +76,16 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    public void updateAndEncryptPassword(Long id, String newPassword) throws Exception {
+        User user = usuarioRepository.findById(id)
+                .orElseThrow(() -> new Exception("Usuario no encontrado con id: " + id));
+
+        // Encriptar la nueva contraseña
+        String encryptedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encryptedPassword);
+
+        // Guardar el usuario con la nueva contraseña
+        usuarioRepository.save(user);
+    }
+
 }
