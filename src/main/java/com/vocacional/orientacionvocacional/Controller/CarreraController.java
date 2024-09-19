@@ -67,4 +67,10 @@ public class CarreraController {
         List<Carrera> carreras = carreraRepository.findAll();
         return ResponseEntity.ok(carreras);
     }
+
+    @GetMapping("/mostrarubicaciones")
+    public ResponseEntity<List<Ubicacion>> obtenerUbicaciones() {
+        List<Ubicacion> ubicaciones = ubicacionRepository.findAll();
+        return ResponseEntity.ok(ubicaciones);
+    }
 }
