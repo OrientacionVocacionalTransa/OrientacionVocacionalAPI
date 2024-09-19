@@ -1,4 +1,4 @@
-package com.vocacional.orientacionvocacional.config;
+package com.vocacional.orientacionvocacional.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
